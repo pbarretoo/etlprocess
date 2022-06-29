@@ -1,0 +1,50 @@
+from email import header
+from pickle import FALSE
+import psycopg2
+import os
+import pandas as pd
+import numpy as np
+
+#### Creating the DB connection 
+conn_string = "host =pedrodb.ch5uojxrjo5o.us-east-1.rds.amazonaws.com \
+                dbname='postgres' \
+                user='pedro' \
+                password='Password!'"
+conn = psycopg2.connect(conn_string)
+cursor = conn.cursor()
+
+# conn_string = "host =database-1-instance-1.ch5uojxrjo5o.us-east-1.rds.amazonaws.com \
+#                 dbname='postgres' \
+#                 user='postgres' \
+#                 password='Password!'"
+conn = psycopg2.connect(conn_string)
+cursor = conn.cursor()
+
+
+
+##### Creating the table 
+# cursor.execute("CREATE TABLE sales_oil (year_month date, uf varchar(20), product varchar(30), unit varchar(5), volume double precision, created_at timestamp)")
+# cursor.execute('commit')
+
+
+
+##### Converting the csv into a new csv withou headers, open in memory
+
+my_file = open('sales_of_oil.csv',encoding='utf-8')
+# print(my_file)
+
+# ##### Creating a sql statement insert all dataset at once 
+SQL_STATEMENT = """
+COPY sales from STDIN WITH
+    CSV
+    HEADER
+    DELIMITER AS ','""" 
+cursor.copy_expert(sql=SQL_STATEMENT, file=my_file)
+cursor.execute('commit')
+
+
+
+#### Testing if it's ok
+# cursor.execute("select * from sales_oil") 
+# for x in cursor:
+#     print(x)

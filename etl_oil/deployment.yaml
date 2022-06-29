@@ -1,0 +1,35 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
+kind: Deployment 
+metadata: 
+  name: raizen-deployment
+  labels:
+    app: raizen-deployment
+spec: 
+  selector: 
+    matchLabels: 
+      app: raizen-deployment 
+  replicas: 2 # tells deployment to run 2 pods matching the template 
+  template: 
+    metadata: 
+      labels: 
+        app: raizen-deployment
+    spec: 
+        containers: 
+        - name: pbarretodocker 
+        image: pbarretodocker/teste:06
+        ports: 
+        - containerPort: 80 
+--- 
+# kind: Service 
+# apiVersion: v1 
+# metadata: 
+#   name: raizen-service 
+# spec: 
+#   selector: 
+#     app: raizen 
+#   ports: 
+#   - protocol: TCP 
+#     port: 80 
+#     targetPort: 80 
+#     nodePort: 31000 
+#   type: NodePort 
