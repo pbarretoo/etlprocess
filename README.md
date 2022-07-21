@@ -1,2 +1,2 @@
 # etlprocess
-Testing an ETL process on AWS
+Creating an ETL process using Python, SQL(postgres AWS) and AirFlow
