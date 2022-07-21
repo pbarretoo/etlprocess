@@ -25,14 +25,7 @@ def transform(**kwargs):
     df = pd.concat([df1_2,df1_tratado],axis=1,join='inner')
 
     # print(df)
-    # Chencking the ds's lenth 
-    # df_teste = df
-    # len(df_teste) # rows
-    # df.count()
-    # df.shape
-    # df[df.columns[1]].count()
-
-
+    
     # Rename UF's
     df1_3 = df['ESTADO'].replace(['ACRE','ALAGOAS','AMAPÁ','AMAZONAS','BAHIA','CEARÁ','DISTRITO FEDERAL','ESPÍRITO SANTO','GOIÁS','MARANHÃO','MATO GROSSO','MATO GROSSO DO SUL',\
         'MINAS GERAIS','PARÁ','PARAÍBA','PARANÁ','PERNAMBUCO','PIAUÍ','RIO DE JANEIRO','RIO GRANDE DO NORTE','RIO GRANDE DO SUL','RONDÔNIA','RORAIMA','SANTA CATARINA','SÃO PAULO','SERGIPE','TOCANTINS'],\
